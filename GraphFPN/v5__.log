@@ -1,0 +1,26 @@
+设置early_stopping
+
+
+max_log, max_acc = '', 0
+patience, end_patience = 0, 20
+for epoch in range(config.epoch):
+    loss = train(epoch)
+    train_acc = test(train_loader)
+    test_acc = test(test_loader)
+    patience += 1
+    if test_acc > max_acc:
+        max_acc = test_acc
+        max_log = 'Epoch: {:03d}, Loss: {:.5f}, Train Acc: {:.5f}, Test Acc: {:.5f}'.format(epoch, loss, train_acc, test_acc)
+        patience = 0
+    print('Epoch: {:03d}, Loss: {:.5f}, Train Acc: {:.5f}, Test Acc: {:.5f}'.
+          format(epoch, loss, train_acc, test_acc))
+    if patience >= end_patience and epoch > 100:
+        break
+
+fin_log = 'Epoch: {:03d}, Loss: {:.5f}, Train Acc: {:.5f}, Test Acc: {:.5f}'.format(epoch, loss, train_acc, test_acc)
+with open(config.logfile, 'a', encoding='utf-8') as f:
+    f.writelines('v5-GraphFPN' + '\n')
+    f.writelines('dataset:' + config.dataname + '\n')
+    f.writelines(max_log+'\n')
+    f.writelines(fin_log+'\n')
+    f.writelines('-----------------------------------------'+'\n')

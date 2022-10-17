@@ -1,0 +1,29 @@
+设置训练集验证集测试集
+
+train_dataset = dataset[:len(dataset) // config.data_split]
+# val_dataset = dataset[len(dataset) // config.data_split: len(dataset) // config.data_split*2]
+# test_dataset = dataset[len(dataset) // config.data_split*2:]
+# train_loader = DataLoader(train_dataset, batch_size=config.batch_size, num_workers=5)
+# val_loader = DataLoader(val_dataset, batch_size=config.batch_size, num_workers=5)
+# test_loader = DataLoader(test_dataset, batch_size=config.batch_size, num_workers=5)
+
+
+
+
+max_log, max_acc = '', 0
+best_val_acc = test_acc = 0
+for epoch in range(config.epoch):
+    loss = train(epoch)
+    train_acc = test(train_loader)
+    val_acc = test(val_loader)
+    if val_acc > best_val_acc:
+        test_acc = test(test_loader)
+        best_val_acc = val_acc
+        if test_acc > max_acc:
+            max_acc = test_acc
+            max_log = 'Epoch: {:03d}, Loss: {:.5f}, Train Acc: {:.5f}, val Acc: {:.5f}, Test Acc: {:.5f}'.format(epoch, loss, train_acc, val_acc, test_acc)
+    print('Epoch: {:03d}, Loss: {:.5f}, Train Acc: {:.5f}, val Acc: {:.5f}, Test Acc: {:.5f}'.
+          format(epoch, loss, train_acc, val_acc, test_acc))
+
+fin_log = 'Epoch: {:03d}, Loss: {:.5f}, Train Acc: {:.5f}, val Acc: {:.5f}, Test Acc: {:.5f}'.format(epoch, loss, train_acc, val_acc, test_acc)
+

@@ -1,0 +1,11 @@
+设置Rezero
+
+
+残差连接，通过一个动态参数学习残差的权重比。
+
+self.resweight1 = nn.Parameter(torch.zeros(1), requires_grad=True)
+self.resweight2 = nn.Parameter(torch.zeros(1), requires_grad=True)
+
+
+x3 = x3 + self.resweight1*x1
+

@@ -1,0 +1,20 @@
+# test_dataset = dataset[:len(dataset) // config.data_split]
+# train_dataset = dataset[len(dataset) // config.data_split:]
+# test_loader = DataLoader(test_dataset, batch_size=config.batch_size, num_workers=0)
+# train_loader = DataLoader(train_dataset, batch_size=config.batch_size, num_workers=0)
+
+
+
+
+max_log = ''
+max_acc = 0
+for epoch in range(config.epoch):
+    loss = train(epoch)
+    train_acc = test(train_loader)
+    test_acc = test(test_loader)
+    if test_acc>max_acc:
+        max_acc = test_acc
+        max_log = 'Epoch: {:03d}, Loss: {:.5f}, Train Acc: {:.5f}, Test Acc: {:.5f}'.format(epoch, loss, train_acc, test_acc)
+    print('Epoch: {:03d}, Loss: {:.5f}, Train Acc: {:.5f}, Test Acc: {:.5f}'.
+          format(epoch, loss, train_acc, test_acc))
+fin_log = 'Epoch: {:03d}, Loss: {:.5f}, Train Acc: {:.5f}, Test Acc: {:.5f}'.format(epoch, loss, train_acc, test_acc)

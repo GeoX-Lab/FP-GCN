@@ -118,3 +118,31 @@ Masking Code Lines 108 - 115
 config.py
 ```
 
+
+### Citation information
+If our repo is useful to you, please cite our published paper as follow:
+```
+Bibtex
+@article{lu2022FPGCN,
+    title={Feature pyramid-based graph convolutional neural network for graph classification},
+    author={Lu, Mingming and Xiao, Zhixiang and Li, Haifeng and Zhang, Ya and Xiong, Neal N.},
+    journal={Journal of Systems Architecture},
+    DOI = {10.1016/j.sysarc.2022.102562},
+    year={2022},
+    type = {Journal Article}
+}
+  
+Endnote
+%0 Journal Article
+%A Lu, Mingming
+%A Xiao, Zhixiang
+%A Li, Haifeng
+%A Zhang, Ya
+%A Xiong, Neal N.
+%D 2022
+%T Feature pyramid-based graph convolutional neural network for graph classification
+%B Journal of Systems Architecture
+%R 10.1016/j.sysarc.2022.102562
+%! Feature pyramid-based graph convolutional neural network for graph classification
+
+```
